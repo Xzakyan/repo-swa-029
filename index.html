@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Estimasi Biaya Kegiatan Mahasiswaa</title>
+  <title>Estimasi Biaya Kegiatan Mahasiswa</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,30 +14,67 @@
       background: white;
       padding: 24px;
       border-radius: 12px;
-      max-width: 700px;
+      max-width: 800px;
       margin: auto;
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
 
     h1 {
       color: #1f4e79;
+      letter-spacing: 2px;
     }
 
     .box {
       background: #eef5ff;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 12px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 18px;
+      padding: 12px 18px;
+      background: #1f4e79;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #163a5a;
+    }
+
+    pre {
+      background: #1e1e1e;
+      color: #00ff88;
       padding: 16px;
       border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    .hasil {
       margin-top: 16px;
-    }
-
-    code {
-      background: #eee;
-      padding: 4px 6px;
-      border-radius: 4px;
-    }
-
-    ul {
-      line-height: 1.8;
+      background: white;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #d0d7de;
     }
   </style>
 </head>
@@ -46,8 +83,8 @@
     <h1>Website Informasi Kegiatan Mahasiswa</h1>
 
     <p>
-      Website ini digunakan untuk memberikan informasi kegiatan mahasiswa
-      dan menghitung estimasi biaya konsumsi berdasarkan jumlah peserta.
+      Website ini digunakan untuk memberikan informasi kegiatan mahasiswa dan
+      menghitung estimasi biaya konsumsi berdasarkan jumlah peserta.
     </p>
 
     <div class="box">
@@ -68,27 +105,85 @@
     </div>
 
     <div class="box">
-      <h2>Dokumentasi API</h2>
-      <p>Gunakan format URL berikut:</p>
-      <p>
-        <code>https://URL-FUNCTION/api/EstimasiBiaya?jumlah=40&jenis=snack</code>
-      </p>
+      <h2>Form Estimasi Biaya</h2>
 
-      <p>Contoh parameter:</p>
-      <ul>
-        <li><code>jumlah=40</code></li>
-        <li><code>jenis=snack</code></li>
-      </ul>
+      <label for="jumlah">Jumlah Peserta</label>
+      <input type="number" id="jumlah" placeholder="Masukkan jumlah peserta">
+
+      <label for="jenis">Jenis Konsumsi</label>
+      <select id="jenis">
+        <option value="">-- Pilih Jenis Konsumsi --</option>
+        <option value="snack">Snack</option>
+        <option value="makan">Makan</option>
+        <option value="lengkap">Lengkap</option>
+      </select>
+
+      <button onclick="hitungEstimasi()">Hitung Estimasi</button>
+
+      <div class="hasil" id="hasil">
+        Hasil estimasi akan muncul di sini.
+      </div>
+    </div>
+
+    <div class="box">
+      <h2>Dokumentasi API</h2>
+      <p>Format endpoint:</p>
+      <pre>GET /api/EstimasiBiaya?jumlah=40&jenis=snack</pre>
     </div>
 
     <div class="box">
       <h2>Layanan Azure yang Digunakan</h2>
       <ul>
         <li>Azure Static Web Apps untuk frontend</li>
-        <li>Azure Functions untuk backend API</li>
-        <li>Application Insights untuk monitoring</li>
+        <li>Azure Functions untuk backend API estimasi biaya</li>
+        <li>Application Insights untuk monitoring function</li>
       </ul>
     </div>
   </div>
+
+  <script>
+    async function hitungEstimasi() {
+      const jumlah = document.getElementById("jumlah").value;
+      const jenis = document.getElementById("jenis").value;
+      const hasil = document.getElementById("hasil");
+
+      if (!jumlah || jumlah <= 0) {
+        hasil.innerHTML = "Jumlah peserta harus diisi dan lebih dari 0.";
+        return;
+      }
+
+      if (!jenis) {
+        hasil.innerHTML = "Jenis konsumsi harus dipilih.";
+        return;
+      }
+
+      // GANTI URL DI BAWAH INI DENGAN URL FUNCTION APP LU
+      const apiUrl = `https://func-serverless-029-xxxxx.southeastasia-01.azurewebsites.net/api/EstimasiBiaya?jumlah=${jumlah}&jenis=${jenis}`;
+
+      try {
+        hasil.innerHTML = "Menghitung estimasi biaya...";
+
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        if (!response.ok) {
+          hasil.innerHTML = data.error || "Terjadi kesalahan saat menghitung estimasi.";
+          return;
+        }
+
+        hasil.innerHTML = `
+          <h3>Hasil Estimasi</h3>
+          <p><strong>Jumlah Peserta:</strong> ${data.jumlah}</p>
+          <p><strong>Jenis Konsumsi:</strong> ${data.jenis}</p>
+          <p><strong>Harga per Peserta:</strong> Rp${data.hargaPerPeserta.toLocaleString("id-ID")}</p>
+          <p><strong>Total Estimasi Biaya:</strong> Rp${data.total.toLocaleString("id-ID")}</p>
+          <p><strong>Timestamp:</strong> ${data.timestamp}</p>
+        `;
+      } catch (error) {
+        hasil.innerHTML = "Gagal menghubungi API. Cek URL Function atau pengaturan CORS.";
+        console.error(error);
+      }
+    }
+  </script>
 </body>
 </html>
