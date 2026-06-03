@@ -13,7 +13,7 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f3f4f6;
+      background: #f2f2f2;
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -21,202 +21,165 @@
       color: #222;
     }
 
-    .phone {
+    .app {
       width: 100%;
       max-width: 390px;
-      background: #fff;
-      border-radius: 28px;
+      background: white;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     }
 
     .header {
-      background: linear-gradient(160deg, #b71c1c, #e53935);
+      background: #c62828;
       color: white;
-      padding: 30px 24px 40px;
-      border-bottom-left-radius: 28px;
-      border-bottom-right-radius: 28px;
-    }
-
-    .header small {
-      opacity: 0.9;
-      font-size: 13px;
+      padding: 28px 22px;
+      text-align: center;
     }
 
     .header h1 {
-      margin: 10px 0 0;
-      font-size: 27px;
-      line-height: 1.2;
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .header p {
+      margin: 8px 0 0;
+      font-size: 13px;
+      opacity: 0.9;
     }
 
     .content {
       padding: 22px;
     }
 
-    .profile {
-      background: #fff5f5;
-      border: 1px solid #ffd0d0;
-      border-radius: 18px;
+    .info {
+      background: #fff1f1;
+      border-radius: 14px;
       padding: 14px;
-      margin-top: -38px;
       margin-bottom: 18px;
-      box-shadow: 0 8px 18px rgba(183, 28, 28, 0.12);
+      border-left: 5px solid #c62828;
     }
 
-    .profile p {
+    .info p {
       margin: 5px 0;
       font-size: 13px;
     }
 
-    .price-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-bottom: 18px;
+    h2 {
+      color: #c62828;
+      font-size: 18px;
+      margin: 18px 0 10px;
     }
 
-    .price-card {
+    .price {
       background: #fafafa;
-      border-radius: 16px;
-      padding: 13px 15px;
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       border: 1px solid #eee;
     }
 
-    .price-card span {
-      font-weight: bold;
-      color: #b71c1c;
-    }
-
-    .section-title {
-      margin: 20px 0 10px;
-      font-size: 18px;
-      color: #b71c1c;
+    .price strong {
+      color: #c62828;
     }
 
     label {
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 7px;
       display: block;
+      font-weight: bold;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      font-size: 14px;
     }
 
     input, select {
       width: 100%;
-      padding: 14px;
-      border-radius: 16px;
-      border: 1px solid #ddd;
+      padding: 13px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
       font-size: 15px;
-      margin-bottom: 14px;
       background: #fafafa;
     }
 
     input:focus, select:focus {
       outline: none;
-      border-color: #e53935;
-      box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.15);
+      border-color: #c62828;
+      box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.15);
       background: white;
     }
 
-    .quick-row {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-
-    .quick-row button {
-      flex: 1;
-      padding: 9px;
-      border: none;
-      border-radius: 999px;
-      background: #ffebee;
-      color: #b71c1c;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .btn-primary {
+    button {
       width: 100%;
+      padding: 14px;
       border: none;
-      border-radius: 18px;
-      padding: 15px;
-      background: linear-gradient(160deg, #b71c1c, #e53935);
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 4px;
-    }
-
-    .btn-secondary {
-      width: 100%;
-      border: none;
-      border-radius: 18px;
-      padding: 13px;
-      background: #eeeeee;
-      color: #333;
+      border-radius: 12px;
+      margin-top: 16px;
       font-size: 15px;
       font-weight: bold;
       cursor: pointer;
+    }
+
+    .btn-hitung {
+      background: #c62828;
+      color: white;
+    }
+
+    .btn-reset {
+      background: #e0e0e0;
+      color: #333;
       margin-top: 10px;
     }
 
-    .result {
+    .hasil {
       margin-top: 20px;
       background: #fafafa;
-      border-radius: 20px;
-      padding: 18px;
+      border-radius: 14px;
+      padding: 16px;
       border: 1px solid #eee;
-    }
-
-    .result h3 {
-      margin-top: 0;
-      color: #b71c1c;
-    }
-
-    .empty {
-      text-align: center;
-      color: #777;
       font-size: 14px;
-      line-height: 1.5;
     }
 
-    .result-row {
+    .hasil-title {
+      color: #c62828;
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .row {
       display: flex;
       justify-content: space-between;
-      padding: 11px 0;
-      border-bottom: 1px solid #e5e7eb;
-      font-size: 14px;
+      border-bottom: 1px solid #ddd;
+      padding: 9px 0;
     }
 
-    .result-row:last-child {
+    .row:last-child {
       border-bottom: none;
     }
 
-    .result-row strong {
-      color: #b71c1c;
+    .row strong {
+      color: #c62828;
       text-align: right;
     }
 
-    .total-box {
-      margin-top: 16px;
-      background: #b71c1c;
+    .total {
+      margin-top: 14px;
+      background: #c62828;
       color: white;
-      padding: 16px;
-      border-radius: 18px;
+      padding: 14px;
+      border-radius: 12px;
       text-align: center;
     }
 
-    .total-box span {
+    .total p {
+      margin: 0;
       font-size: 13px;
-      opacity: 0.9;
     }
 
-    .total-box h2 {
-      margin: 6px 0 0;
-      font-size: 26px;
+    .total h3 {
+      margin: 5px 0 0;
+      font-size: 24px;
     }
 
     .error {
@@ -226,74 +189,55 @@
     }
 
     .loading {
-      background: #fff7ed;
-      border-color: #fed7aa;
-      color: #9a3412;
-    }
-
-    .api-note {
-      margin-top: 18px;
-      background: #fff5f5;
-      border-radius: 16px;
-      padding: 13px;
-      font-size: 12px;
-      color: #555;
-      word-break: break-all;
+      background: #fff8e1;
+      border-color: #ffe082;
+      color: #795548;
     }
 
     .footer {
       text-align: center;
       font-size: 12px;
-      color: #999;
-      padding: 0 0 22px;
+      color: #777;
+      padding: 0 0 20px;
     }
   </style>
 </head>
 
 <body>
-  <div class="phone">
+  <div class="app">
     <div class="header">
-      <small>Mini Project Azure Serverless</small>
       <h1>Estimasi Biaya Konsumsi</h1>
+      <p>Mini Project Azure Serverless</p>
     </div>
 
     <div class="content">
-      <div class="profile">
+      <div class="info">
         <p><b>Nama:</b> Zaky Auliya Nugroho</p>
         <p><b>NIM:</b> 0920240029</p>
         <p><b>Layanan:</b> Static Web Apps + Azure Functions</p>
       </div>
 
-      <h2 class="section-title">Daftar Harga</h2>
+      <h2>Daftar Harga</h2>
 
-      <div class="price-grid">
-        <div class="price-card">
-          <div>🍪 Snack</div>
-          <span>Rp15.000</span>
-        </div>
-
-        <div class="price-card">
-          <div>🍱 Makan</div>
-          <span>Rp30.000</span>
-        </div>
-
-        <div class="price-card">
-          <div>🍽️ Lengkap</div>
-          <span>Rp45.000</span>
-        </div>
+      <div class="price">
+        <span>Snack</span>
+        <strong>Rp15.000</strong>
       </div>
 
-      <h2 class="section-title">Input Kegiatan</h2>
+      <div class="price">
+        <span>Makan</span>
+        <strong>Rp30.000</strong>
+      </div>
+
+      <div class="price">
+        <span>Lengkap</span>
+        <strong>Rp45.000</strong>
+      </div>
+
+      <h2>Input Data</h2>
 
       <label for="jumlah">Jumlah Peserta</label>
       <input type="number" id="jumlah" min="1" placeholder="Masukkan jumlah peserta">
-
-      <div class="quick-row">
-        <button onclick="setJumlah(20)">20</button>
-        <button onclick="setJumlah(40)">40</button>
-        <button onclick="setJumlah(75)">75</button>
-        <button onclick="setJumlah(100)">100</button>
-      </div>
 
       <label for="jenis">Jenis Konsumsi</label>
       <select id="jenis">
@@ -303,17 +247,12 @@
         <option value="lengkap">Lengkap - Rp45.000</option>
       </select>
 
-      <button class="btn-primary" onclick="hitungEstimasi()">Hitung Estimasi</button>
-      <button class="btn-secondary" onclick="resetForm()">Reset</button>
+      <button class="btn-hitung" onclick="hitungEstimasi()">Hitung Estimasi</button>
+      <button class="btn-reset" onclick="resetForm()">Reset</button>
 
-      <div id="hasil" class="result">
-        <div class="empty">
-          Hasil estimasi akan muncul setelah jumlah peserta dan jenis konsumsi diisi.
-        </div>
-      </div>
-
-      <div class="api-note">
-        API: /api/EstimasiBiaya?jumlah=40&jenis=snack
+      <div id="hasil" class="hasil">
+        <div class="hasil-title">Hasil Estimasi</div>
+        Hasil akan muncul setelah data diisi.
       </div>
     </div>
 
@@ -324,10 +263,6 @@
 
   <script>
     const API_URL = "https://func-serverless-029-exhfe2fkdggqamhc.southeastasia-01.azurewebsites.net/api/EstimasiBiaya";
-
-    function setJumlah(nilai) {
-      document.getElementById("jumlah").value = nilai;
-    }
 
     function formatRupiah(angka) {
       return new Intl.NumberFormat("id-ID", {
@@ -343,18 +278,18 @@
       const hasil = document.getElementById("hasil");
 
       if (!jumlah || jumlah <= 0) {
-        hasil.className = "result error";
-        hasil.innerHTML = "Jumlah peserta wajib diisi dan harus lebih dari 0.";
+        hasil.className = "hasil error";
+        hasil.innerHTML = "Jumlah peserta harus diisi dan lebih dari 0.";
         return;
       }
 
       if (!jenis) {
-        hasil.className = "result error";
-        hasil.innerHTML = "Jenis konsumsi wajib dipilih.";
+        hasil.className = "hasil error";
+        hasil.innerHTML = "Jenis konsumsi harus dipilih.";
         return;
       }
 
-      hasil.className = "result loading";
+      hasil.className = "hasil loading";
       hasil.innerHTML = "Sedang menghitung estimasi biaya...";
 
       try {
@@ -362,41 +297,41 @@
         const data = await response.json();
 
         if (!response.ok) {
-          hasil.className = "result error";
+          hasil.className = "hasil error";
           hasil.innerHTML = data.error || "Terjadi kesalahan pada API.";
           return;
         }
 
-        hasil.className = "result";
+        hasil.className = "hasil";
         hasil.innerHTML = `
-          <h3>Hasil Estimasi</h3>
+          <div class="hasil-title">Hasil Estimasi</div>
 
-          <div class="result-row">
+          <div class="row">
             <span>Jumlah Peserta</span>
             <strong>${data.jumlah} orang</strong>
           </div>
 
-          <div class="result-row">
+          <div class="row">
             <span>Jenis Konsumsi</span>
             <strong>${data.jenis}</strong>
           </div>
 
-          <div class="result-row">
+          <div class="row">
             <span>Harga per Peserta</span>
             <strong>${formatRupiah(data.hargaPerPeserta)}</strong>
           </div>
 
-          <div class="total-box">
-            <span>Total Estimasi Biaya</span>
-            <h2>${formatRupiah(data.total)}</h2>
+          <div class="total">
+            <p>Total Estimasi Biaya</p>
+            <h3>${formatRupiah(data.total)}</h3>
           </div>
 
-          <p style="font-size: 12px; color: #777; margin-top: 12px;">
-            Timestamp: ${data.timestamp}
+          <p style="font-size: 11px; color: #777; margin-top: 10px;">
+            ${data.timestamp}
           </p>
         `;
       } catch (error) {
-        hasil.className = "result error";
+        hasil.className = "hasil error";
         hasil.innerHTML = "Gagal menghubungi API. Periksa CORS atau URL Function.";
       }
     }
@@ -404,13 +339,12 @@
     function resetForm() {
       document.getElementById("jumlah").value = "";
       document.getElementById("jenis").value = "";
-      const hasil = document.getElementById("hasil");
 
-      hasil.className = "result";
+      const hasil = document.getElementById("hasil");
+      hasil.className = "hasil";
       hasil.innerHTML = `
-        <div class="empty">
-          Hasil estimasi akan muncul setelah jumlah peserta dan jenis konsumsi diisi.
-        </div>
+        <div class="hasil-title">Hasil Estimasi</div>
+        Hasil akan muncul setelah data diisi.
       `;
     }
   </script>
