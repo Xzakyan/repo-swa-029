@@ -1,364 +1,142 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
   <title>Estimasi Biaya Kegiatan Mahasiswa</title>
-
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       font-family: Arial, sans-serif;
+      background: #f4f6f8;
       margin: 0;
-      background: linear-gradient(135deg, #eaf3ff, #f7f9fc);
-      color: #1f2937;
+      padding: 30px;
     }
 
-    .page {
-      max-width: 1100px;
+    .container {
+      max-width: 700px;
       margin: auto;
-      padding: 32px 20px;
-    }
-
-    .hero {
       background: white;
-      padding: 32px;
-      border-radius: 18px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      margin-bottom: 24px;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
-    .hero h1 {
+    h1 {
       color: #1f4e79;
-      margin: 0 0 12px;
-      font-size: 34px;
-      letter-spacing: 1px;
+      text-align: center;
     }
 
-    .hero p {
-      font-size: 17px;
-      margin: 0;
-      line-height: 1.5;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 24px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
-      margin-bottom: 24px;
-    }
-
-    .card h2 {
-      margin-top: 0;
-      color: #1f4e79;
-    }
-
-    .price-list {
-      display: grid;
-      gap: 12px;
-    }
-
-    .price-item {
+    .box {
       background: #eef5ff;
-      border-left: 5px solid #1f4e79;
-      padding: 14px;
-      border-radius: 10px;
-    }
-
-    .price-item strong {
-      display: block;
-      margin-bottom: 4px;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
     }
 
     label {
       font-weight: bold;
       display: block;
-      margin-top: 14px;
-      margin-bottom: 6px;
+      margin-top: 12px;
     }
 
     input, select {
       width: 100%;
-      padding: 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      font-size: 16px;
-      outline: none;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
     }
 
-    input:focus, select:focus {
-      border-color: #1f4e79;
-      box-shadow: 0 0 0 3px rgba(31, 78, 121, 0.15);
-    }
-
-    .quick-buttons {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-
-    .quick-buttons button {
-      background: #eef5ff;
-      color: #1f4e79;
-      border: 1px solid #b6d4f2;
-      padding: 8px 12px;
-      border-radius: 999px;
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
-    }
-
-    .actions {
-      display: flex;
-      gap: 12px;
-      margin-top: 18px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: #1f4e79;
       color: white;
-      border: none;
-      padding: 12px 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
+      background: #1f4e79;
     }
 
-    .btn-secondary {
-      background: #e5e7eb;
-      color: #1f2937;
-      border: none;
-      padding: 12px 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
+    button:hover {
+      background: #163b5c;
     }
 
-    .btn-primary:hover {
-      background: #163a5a;
+    .reset {
+      background: #777;
     }
 
-    .btn-secondary:hover {
-      background: #d1d5db;
+    .hasil {
+      margin-top: 15px;
+      padding: 15px;
+      background: #f9fafb;
+      border-radius: 8px;
+      border: 1px solid #ddd;
     }
 
-    .result {
-      margin-top: 20px;
-      padding: 18px;
-      border-radius: 14px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
+    .success {
+      background: #e9fbe9;
+      border-color: #76c776;
     }
 
-    .result.success {
-      background: #ecfdf5;
-      border-color: #86efac;
-    }
-
-    .result.error {
-      background: #fef2f2;
-      border-color: #fca5a5;
-      color: #991b1b;
-    }
-
-    .result.loading {
-      background: #eff6ff;
-      border-color: #93c5fd;
-      color: #1d4ed8;
-    }
-
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .summary-box {
-      background: white;
-      padding: 14px;
-      border-radius: 10px;
-      border: 1px solid #d1fae5;
-    }
-
-    .summary-box span {
-      display: block;
-      color: #64748b;
-      font-size: 13px;
-      margin-bottom: 5px;
-    }
-
-    .summary-box strong {
-      font-size: 18px;
-      color: #065f46;
-    }
-
-    .history-item {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      padding: 12px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      font-size: 14px;
-    }
-
-    code {
-      display: block;
-      background: #111827;
-      color: #86efac;
-      padding: 14px;
-      border-radius: 10px;
-      overflow-x: auto;
-      font-size: 14px;
-    }
-
-    footer {
-      text-align: center;
-      color: #64748b;
-      margin-top: 24px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 800px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero h1 {
-        font-size: 28px;
-      }
-
-      .summary-grid {
-        grid-template-columns: 1fr;
-      }
+    .error {
+      background: #ffecec;
+      border-color: #ff9999;
+      color: #b00020;
     }
   </style>
 </head>
-
 <body>
-  <div class="page">
-    <div class="hero">
-      <h1>Website Informasi Kegiatan Mahasiswa</h1>
-      <p>
-        Website ini digunakan untuk menghitung estimasi biaya konsumsi kegiatan mahasiswa
-        berdasarkan jumlah peserta dan jenis konsumsi yang dipilih.
-      </p>
+  <div class="container">
+    <h1>Estimasi Biaya Kegiatan Mahasiswa</h1>
+
+    <div class="box">
+      <h3>Identitas Praktikum</h3>
+      <p><b>Nama:</b> Zaky Auliya Nugroho</p>
+      <p><b>NIM:</b> 0920240029</p>
+      <p><b>Mata Kuliah:</b> Komputasi Awan</p>
+      <p><b>Topik:</b> Azure Serverless</p>
     </div>
 
-    <div class="grid">
-      <div>
-        <div class="card">
-          <h2>Identitas Praktikum</h2>
-          <p><strong>Nama:</strong> Zaky Auliya Nugroho</p>
-          <p><strong>NIM:</strong> 0920240029</p>
-          <p><strong>Mata Kuliah:</strong> Komputasi Awan</p>
-          <p><strong>Topik:</strong> Azure Serverless</p>
-        </div>
+    <div class="box">
+      <h3>Daftar Harga Konsumsi</h3>
+      <ul>
+        <li>Snack: Rp15.000 / peserta</li>
+        <li>Makan: Rp30.000 / peserta</li>
+        <li>Lengkap: Rp45.000 / peserta</li>
+      </ul>
+    </div>
 
-        <div class="card">
-          <h2>Daftar Harga Konsumsi</h2>
+    <div class="box">
+      <h3>Form Estimasi</h3>
 
-          <div class="price-list">
-            <div class="price-item">
-              <strong>Snack</strong>
-              Rp15.000 per peserta
-            </div>
+      <label>Jumlah Peserta</label>
+      <input type="number" id="jumlah" placeholder="Contoh: 40">
 
-            <div class="price-item">
-              <strong>Makan</strong>
-              Rp30.000 per peserta
-            </div>
+      <label>Jenis Konsumsi</label>
+      <select id="jenis">
+        <option value="">-- Pilih Jenis --</option>
+        <option value="snack">Snack</option>
+        <option value="makan">Makan</option>
+        <option value="lengkap">Lengkap</option>
+      </select>
 
-            <div class="price-item">
-              <strong>Lengkap</strong>
-              Rp45.000 per peserta
-            </div>
-          </div>
-        </div>
+      <button onclick="hitungEstimasi()">Hitung Estimasi</button>
+      <button class="reset" onclick="resetForm()">Reset</button>
 
-        <div class="card">
-          <h2>Layanan Azure</h2>
-          <ul>
-            <li>Azure Static Web Apps sebagai frontend</li>
-            <li>Azure Functions sebagai backend API</li>
-            <li>Application Insights untuk monitoring</li>
-          </ul>
-        </div>
-      </div>
-
-      <div>
-        <div class="card">
-          <h2>Form Estimasi Biaya</h2>
-
-          <label for="jumlah">Jumlah Peserta</label>
-          <input type="number" id="jumlah" min="1" placeholder="Contoh: 40" />
-
-          <div class="quick-buttons">
-            <button onclick="setJumlah(20)">20 peserta</button>
-            <button onclick="setJumlah(40)">40 peserta</button>
-            <button onclick="setJumlah(75)">75 peserta</button>
-            <button onclick="setJumlah(100)">100 peserta</button>
-          </div>
-
-          <label for="jenis">Jenis Konsumsi</label>
-          <select id="jenis">
-            <option value="">-- Pilih Jenis Konsumsi --</option>
-            <option value="snack">Snack - Rp15.000</option>
-            <option value="makan">Makan - Rp30.000</option>
-            <option value="lengkap">Lengkap - Rp45.000</option>
-          </select>
-
-          <div class="actions">
-            <button class="btn-primary" onclick="hitungEstimasi()">Hitung Estimasi</button>
-            <button class="btn-secondary" onclick="resetForm()">Reset</button>
-          </div>
-
-          <div id="hasil" class="result">
-            Masukkan jumlah peserta dan pilih jenis konsumsi untuk melihat estimasi biaya.
-          </div>
-        </div>
-
-        <div class="card">
-          <h2>Riwayat Estimasi</h2>
-          <div id="riwayat">
-            Belum ada riwayat perhitungan.
-          </div>
-        </div>
-
-        <div class="card">
-          <h2>Dokumentasi API</h2>
-          <p>Endpoint API yang digunakan:</p>
-          <code>
-GET /api/EstimasiBiaya?jumlah=40&jenis=snack
-          </code>
-        </div>
+      <div id="hasil" class="hasil">
+        Hasil estimasi akan muncul di sini.
       </div>
     </div>
 
-    <footer>
-      Mini Project Azure Serverless - Static Web Apps + Azure Functions
-    </footer>
+    <div class="box">
+      <h3>Dokumentasi API</h3>
+      <p>Endpoint:</p>
+      <code>/api/EstimasiBiaya?jumlah=40&jenis=snack</code>
+    </div>
   </div>
 
   <script>
-    const API_BASE_URL = "https://func-serverless-029-exhfe2fkdggqamhc.southeastasia-01.azurewebsites.net/api/EstimasiBiaya";
-
-    function setJumlah(nilai) {
-      document.getElementById("jumlah").value = nilai;
-    }
+    const API_URL = "https://func-serverless-029-exhfe2fkdggqamhc.southeastasia-01.azurewebsites.net/api/EstimasiBiaya";
 
     function formatRupiah(angka) {
       return new Intl.NumberFormat("id-ID", {
@@ -368,99 +146,56 @@ GET /api/EstimasiBiaya?jumlah=40&jenis=snack
       }).format(angka);
     }
 
-    function resetForm() {
-      document.getElementById("jumlah").value = "";
-      document.getElementById("jenis").value = "";
-      document.getElementById("hasil").className = "result";
-      document.getElementById("hasil").innerHTML =
-        "Masukkan jumlah peserta dan pilih jenis konsumsi untuk melihat estimasi biaya.";
-    }
-
     async function hitungEstimasi() {
       const jumlah = document.getElementById("jumlah").value;
       const jenis = document.getElementById("jenis").value;
       const hasil = document.getElementById("hasil");
 
       if (!jumlah || jumlah <= 0) {
-        hasil.className = "result error";
+        hasil.className = "hasil error";
         hasil.innerHTML = "Jumlah peserta harus diisi dan lebih dari 0.";
         return;
       }
 
       if (!jenis) {
-        hasil.className = "result error";
+        hasil.className = "hasil error";
         hasil.innerHTML = "Jenis konsumsi harus dipilih.";
         return;
       }
 
-      const apiUrl = `${API_BASE_URL}?jumlah=${jumlah}&jenis=${jenis}`;
+      hasil.className = "hasil";
+      hasil.innerHTML = "Sedang menghitung...";
 
       try {
-        hasil.className = "result loading";
-        hasil.innerHTML = "Sedang menghitung estimasi biaya...";
-
-        const response = await fetch(apiUrl);
+        const response = await fetch(`${API_URL}?jumlah=${jumlah}&jenis=${jenis}`);
         const data = await response.json();
 
         if (!response.ok) {
-          hasil.className = "result error";
-          hasil.innerHTML = data.error || "Terjadi kesalahan saat menghitung estimasi.";
+          hasil.className = "hasil error";
+          hasil.innerHTML = data.error || "Terjadi kesalahan.";
           return;
         }
 
-        hasil.className = "result success";
+        hasil.className = "hasil success";
         hasil.innerHTML = `
-          <h3>Hasil Estimasi Biaya</h3>
-
-          <div class="summary-grid">
-            <div class="summary-box">
-              <span>Jumlah Peserta</span>
-              <strong>${data.jumlah} peserta</strong>
-            </div>
-
-            <div class="summary-box">
-              <span>Jenis Konsumsi</span>
-              <strong>${data.jenis}</strong>
-            </div>
-
-            <div class="summary-box">
-              <span>Harga per Peserta</span>
-              <strong>${formatRupiah(data.hargaPerPeserta)}</strong>
-            </div>
-
-            <div class="summary-box">
-              <span>Total Estimasi</span>
-              <strong>${formatRupiah(data.total)}</strong>
-            </div>
-          </div>
-
-          <p><strong>Timestamp:</strong> ${data.timestamp}</p>
+          <h3>Hasil Estimasi</h3>
+          <p><b>Jumlah Peserta:</b> ${data.jumlah}</p>
+          <p><b>Jenis Konsumsi:</b> ${data.jenis}</p>
+          <p><b>Harga per Peserta:</b> ${formatRupiah(data.hargaPerPeserta)}</p>
+          <p><b>Total Biaya:</b> ${formatRupiah(data.total)}</p>
+          <p><b>Timestamp:</b> ${data.timestamp}</p>
         `;
-
-        tambahRiwayat(data);
       } catch (error) {
-        hasil.className = "result error";
-        hasil.innerHTML = "Gagal menghubungi API. Cek URL Function atau pengaturan CORS.";
-        console.error(error);
+        hasil.className = "hasil error";
+        hasil.innerHTML = "Gagal menghubungi API. Cek CORS atau URL Function.";
       }
     }
 
-    function tambahRiwayat(data) {
-      const riwayat = document.getElementById("riwayat");
-
-      if (riwayat.innerHTML.includes("Belum ada riwayat")) {
-        riwayat.innerHTML = "";
-      }
-
-      const item = document.createElement("div");
-      item.className = "history-item";
-      item.innerHTML = `
-        <strong>${data.jumlah} peserta - ${data.jenis}</strong><br>
-        Total: ${formatRupiah(data.total)}<br>
-        <small>${data.timestamp}</small>
-      `;
-
-      riwayat.prepend(item);
+    function resetForm() {
+      document.getElementById("jumlah").value = "";
+      document.getElementById("jenis").value = "";
+      document.getElementById("hasil").className = "hasil";
+      document.getElementById("hasil").innerHTML = "Hasil estimasi akan muncul di sini.";
     }
   </script>
 </body>
