@@ -1,19 +1,94 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>Praktikum Azure Static Web Apps</title>
-<style>
-body { font-family: Arial; margin: 40px; background: #f4f6f8; }
-.container { background: white; padding: 24px; border-radius: 12px; } h1 { color: #1f4e79; }
-</style>
+  <meta charset="UTF-8">
+  <title>Estimasi Biaya Kegiatan Mahasiswa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f4f6f8;
+    }
+
+    .container {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      color: #1f4e79;
+    }
+
+    .box {
+      background: #eef5ff;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 16px;
+    }
+
+    code {
+      background: #eee;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+
+    ul {
+      line-height: 1.8;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-<h1>Praktikum Azure Static Web Apps</h1>
-<p>Halaman ini berhasil di-deploy menggunakan Azure Static Web Apps.</p>
-<p>Zaky Auliya Nugroho</p>
-<p>TRPL-2B : 0920240029</p>
-</div>
+  <div class="container">
+    <h1>Website Informasi Kegiatan Mahasiswa</h1>
+
+    <p>
+      Website ini digunakan untuk memberikan informasi kegiatan mahasiswa
+      dan menghitung estimasi biaya konsumsi berdasarkan jumlah peserta.
+    </p>
+
+    <div class="box">
+      <h2>Identitas Praktikum</h2>
+      <p><strong>Nama:</strong> Zaky Auliya Nugroho</p>
+      <p><strong>NIM:</strong> 0920240029</p>
+      <p><strong>Mata Kuliah:</strong> Komputasi Awan</p>
+      <p><strong>Topik:</strong> Azure Serverless</p>
+    </div>
+
+    <div class="box">
+      <h2>Jenis Konsumsi</h2>
+      <ul>
+        <li>Snack: Rp15.000 per peserta</li>
+        <li>Makan: Rp30.000 per peserta</li>
+        <li>Lengkap: Rp45.000 per peserta</li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <h2>Dokumentasi API</h2>
+      <p>Gunakan format URL berikut:</p>
+      <p>
+        <code>https://URL-FUNCTION/api/EstimasiBiaya?jumlah=40&jenis=snack</code>
+      </p>
+
+      <p>Contoh parameter:</p>
+      <ul>
+        <li><code>jumlah=40</code></li>
+        <li><code>jenis=snack</code></li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <h2>Layanan Azure yang Digunakan</h2>
+      <ul>
+        <li>Azure Static Web Apps untuk frontend</li>
+        <li>Azure Functions untuk backend API</li>
+        <li>Application Insights untuk monitoring</li>
+      </ul>
+    </div>
+  </div>
 </body>
 </html>
