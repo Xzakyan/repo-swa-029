@@ -2,7 +2,9 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Event Cost Estimator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimasi Biaya Konsumsi</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -11,294 +13,321 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f6f7fb;
+      background: #f3f4f6;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
       color: #222;
     }
 
-    .hero {
-      background: linear-gradient(135deg, #8b0000, #e53935);
+    .phone {
+      width: 100%;
+      max-width: 390px;
+      background: #fff;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.18);
+    }
+
+    .header {
+      background: linear-gradient(160deg, #b71c1c, #e53935);
       color: white;
-      padding: 45px 25px;
-      text-align: center;
+      padding: 30px 24px 40px;
+      border-bottom-left-radius: 28px;
+      border-bottom-right-radius: 28px;
     }
 
-    .hero h1 {
-      margin: 0;
-      font-size: 34px;
+    .header small {
+      opacity: 0.9;
+      font-size: 13px;
     }
 
-    .hero p {
-      margin-top: 10px;
-      font-size: 16px;
-      opacity: 0.95;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: -35px auto 40px;
-      padding: 0 20px;
-    }
-
-    .main-card {
-      background: white;
-      border-radius: 18px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-      padding: 25px;
-    }
-
-    .top-info {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-
-    .price-card {
-      background: #fff5f5;
-      border: 1px solid #ffd0d0;
-      border-radius: 14px;
-      padding: 18px;
-      text-align: center;
-    }
-
-    .price-card h3 {
-      margin: 0;
-      color: #b71c1c;
-    }
-
-    .price-card p {
-      margin: 8px 0 0;
-      font-weight: bold;
+    .header h1 {
+      margin: 10px 0 0;
+      font-size: 27px;
+      line-height: 1.2;
     }
 
     .content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
+      padding: 22px;
     }
 
-    .section {
+    .profile {
+      background: #fff5f5;
+      border: 1px solid #ffd0d0;
+      border-radius: 18px;
+      padding: 14px;
+      margin-top: -38px;
+      margin-bottom: 18px;
+      box-shadow: 0 8px 18px rgba(183, 28, 28, 0.12);
+    }
+
+    .profile p {
+      margin: 5px 0;
+      font-size: 13px;
+    }
+
+    .price-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .price-card {
       background: #fafafa;
-      border-radius: 14px;
-      padding: 22px;
+      border-radius: 16px;
+      padding: 13px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       border: 1px solid #eee;
     }
 
-    .section h2 {
-      margin-top: 0;
+    .price-card span {
+      font-weight: bold;
+      color: #b71c1c;
+    }
+
+    .section-title {
+      margin: 20px 0 10px;
+      font-size: 18px;
       color: #b71c1c;
     }
 
     label {
+      font-size: 14px;
       font-weight: bold;
-      display: block;
-      margin-top: 15px;
       margin-bottom: 7px;
+      display: block;
     }
 
     input, select {
       width: 100%;
-      padding: 13px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid #ddd;
       font-size: 15px;
+      margin-bottom: 14px;
+      background: #fafafa;
     }
 
     input:focus, select:focus {
       outline: none;
       border-color: #e53935;
-      box-shadow: 0 0 0 3px rgba(229,57,53,0.15);
+      box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.15);
+      background: white;
     }
 
-    .btn {
-      width: 100%;
-      padding: 14px;
-      margin-top: 18px;
+    .quick-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .quick-row button {
+      flex: 1;
+      padding: 9px;
       border: none;
-      border-radius: 10px;
-      background: #d32f2f;
-      color: white;
+      border-radius: 999px;
+      background: #ffebee;
+      color: #b71c1c;
       font-weight: bold;
-      font-size: 16px;
       cursor: pointer;
     }
 
-    .btn:hover {
-      background: #b71c1c;
+    .btn-primary {
+      width: 100%;
+      border: none;
+      border-radius: 18px;
+      padding: 15px;
+      background: linear-gradient(160deg, #b71c1c, #e53935);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 4px;
     }
 
-    .btn-reset {
-      background: #555;
+    .btn-secondary {
+      width: 100%;
+      border: none;
+      border-radius: 18px;
+      padding: 13px;
+      background: #eeeeee;
+      color: #333;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
       margin-top: 10px;
     }
 
-    .btn-reset:hover {
-      background: #333;
+    .result {
+      margin-top: 20px;
+      background: #fafafa;
+      border-radius: 20px;
+      padding: 18px;
+      border: 1px solid #eee;
     }
 
-    .hasil {
-      background: white;
-      border-radius: 14px;
-      padding: 20px;
-      border: 1px solid #eee;
-      min-height: 260px;
+    .result h3 {
+      margin-top: 0;
+      color: #b71c1c;
     }
 
     .empty {
       text-align: center;
       color: #777;
-      padding-top: 60px;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
-    .result-box {
-      margin-top: 12px;
-    }
-
-    .row {
+    .result-row {
       display: flex;
       justify-content: space-between;
-      padding: 13px 0;
-      border-bottom: 1px solid #eee;
+      padding: 11px 0;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 14px;
     }
 
-    .row:last-child {
+    .result-row:last-child {
       border-bottom: none;
     }
 
-    .value {
-      font-weight: bold;
+    .result-row strong {
       color: #b71c1c;
+      text-align: right;
     }
 
-    .total {
-      margin-top: 18px;
-      padding: 18px;
+    .total-box {
+      margin-top: 16px;
       background: #b71c1c;
       color: white;
-      border-radius: 12px;
+      padding: 16px;
+      border-radius: 18px;
       text-align: center;
     }
 
-    .total h3 {
-      margin: 0 0 8px;
+    .total-box span {
+      font-size: 13px;
+      opacity: 0.9;
     }
 
-    .total strong {
-      font-size: 28px;
+    .total-box h2 {
+      margin: 6px 0 0;
+      font-size: 26px;
     }
 
     .error {
       background: #ffe5e5;
+      border-color: #ffb3b3;
       color: #a00000;
-      padding: 15px;
-      border-radius: 10px;
-      border: 1px solid #ffb3b3;
     }
 
     .loading {
-      background: #fff3cd;
-      color: #7a5b00;
-      padding: 15px;
-      border-radius: 10px;
-      border: 1px solid #ffe08a;
+      background: #fff7ed;
+      border-color: #fed7aa;
+      color: #9a3412;
     }
 
-    .identity {
-      margin-top: 25px;
+    .api-note {
+      margin-top: 18px;
       background: #fff5f5;
-      padding: 18px;
-      border-radius: 12px;
-      border-left: 5px solid #d32f2f;
+      border-radius: 16px;
+      padding: 13px;
+      font-size: 12px;
+      color: #555;
+      word-break: break-all;
     }
 
-    .identity p {
-      margin: 6px 0;
-    }
-
-    @media (max-width: 800px) {
-      .top-info,
-      .content {
-        grid-template-columns: 1fr;
-      }
-
-      .hero h1 {
-        font-size: 28px;
-      }
-
-      .container {
-        margin-top: -25px;
-      }
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+      padding: 0 0 22px;
     }
   </style>
 </head>
 
 <body>
-  <div class="hero">
-    <h1>Event Cost Estimator</h1>
-    <p>Mini Project Azure Serverless - Estimasi Biaya Konsumsi Kegiatan Mahasiswa</p>
-  </div>
+  <div class="phone">
+    <div class="header">
+      <small>Mini Project Azure Serverless</small>
+      <h1>Estimasi Biaya Konsumsi</h1>
+    </div>
 
-  <div class="container">
-    <div class="main-card">
+    <div class="content">
+      <div class="profile">
+        <p><b>Nama:</b> Zaky Auliya Nugroho</p>
+        <p><b>NIM:</b> 0920240029</p>
+        <p><b>Layanan:</b> Static Web Apps + Azure Functions</p>
+      </div>
 
-      <div class="top-info">
+      <h2 class="section-title">Daftar Harga</h2>
+
+      <div class="price-grid">
         <div class="price-card">
-          <h3>Snack</h3>
-          <p>Rp15.000 / peserta</p>
+          <div>🍪 Snack</div>
+          <span>Rp15.000</span>
         </div>
 
         <div class="price-card">
-          <h3>Makan</h3>
-          <p>Rp30.000 / peserta</p>
+          <div>🍱 Makan</div>
+          <span>Rp30.000</span>
         </div>
 
         <div class="price-card">
-          <h3>Lengkap</h3>
-          <p>Rp45.000 / peserta</p>
+          <div>🍽️ Lengkap</div>
+          <span>Rp45.000</span>
         </div>
       </div>
 
-      <div class="content">
-        <div class="section">
-          <h2>Input Estimasi</h2>
+      <h2 class="section-title">Input Kegiatan</h2>
 
-          <label for="jumlah">Jumlah Peserta</label>
-          <input type="number" id="jumlah" placeholder="Masukkan jumlah peserta">
+      <label for="jumlah">Jumlah Peserta</label>
+      <input type="number" id="jumlah" min="1" placeholder="Masukkan jumlah peserta">
 
-          <label for="jenis">Kategori Konsumsi</label>
-          <select id="jenis">
-            <option value="">-- Pilih kategori konsumsi --</option>
-            <option value="snack">Snack - Rp15.000</option>
-            <option value="makan">Makan - Rp30.000</option>
-            <option value="lengkap">Lengkap - Rp45.000</option>
-          </select>
+      <div class="quick-row">
+        <button onclick="setJumlah(20)">20</button>
+        <button onclick="setJumlah(40)">40</button>
+        <button onclick="setJumlah(75)">75</button>
+        <button onclick="setJumlah(100)">100</button>
+      </div>
 
-          <button class="btn" onclick="hitungEstimasi()">Hitung Sekarang</button>
-          <button class="btn btn-reset" onclick="resetForm()">Reset Form</button>
+      <label for="jenis">Jenis Konsumsi</label>
+      <select id="jenis">
+        <option value="">Pilih jenis konsumsi</option>
+        <option value="snack">Snack - Rp15.000</option>
+        <option value="makan">Makan - Rp30.000</option>
+        <option value="lengkap">Lengkap - Rp45.000</option>
+      </select>
 
-          <div class="identity">
-            <p><b>Nama:</b> Zaky Auliya Nugroho</p>
-            <p><b>NIM:</b> 0920240029</p>
-            <p><b>Layanan:</b> Static Web Apps + Azure Functions</p>
-          </div>
-        </div>
+      <button class="btn-primary" onclick="hitungEstimasi()">Hitung Estimasi</button>
+      <button class="btn-secondary" onclick="resetForm()">Reset</button>
 
-        <div class="section">
-          <h2>Hasil Perhitungan</h2>
-
-          <div id="hasil" class="hasil">
-            <div class="empty">
-              Masukkan data kegiatan untuk melihat hasil estimasi biaya.
-            </div>
-          </div>
+      <div id="hasil" class="result">
+        <div class="empty">
+          Hasil estimasi akan muncul setelah jumlah peserta dan jenis konsumsi diisi.
         </div>
       </div>
 
+      <div class="api-note">
+        API: /api/EstimasiBiaya?jumlah=40&jenis=snack
+      </div>
+    </div>
+
+    <div class="footer">
+      Powered by Azure Static Web Apps & Azure Functions
     </div>
   </div>
 
   <script>
     const API_URL = "https://func-serverless-029-exhfe2fkdggqamhc.southeastasia-01.azurewebsites.net/api/EstimasiBiaya";
+
+    function setJumlah(nilai) {
+      document.getElementById("jumlah").value = nilai;
+    }
 
     function formatRupiah(angka) {
       return new Intl.NumberFormat("id-ID", {
@@ -314,64 +343,73 @@
       const hasil = document.getElementById("hasil");
 
       if (!jumlah || jumlah <= 0) {
-        hasil.innerHTML = `<div class="error">Jumlah peserta wajib diisi dan harus lebih dari 0.</div>`;
+        hasil.className = "result error";
+        hasil.innerHTML = "Jumlah peserta wajib diisi dan harus lebih dari 0.";
         return;
       }
 
       if (!jenis) {
-        hasil.innerHTML = `<div class="error">Kategori konsumsi wajib dipilih.</div>`;
+        hasil.className = "result error";
+        hasil.innerHTML = "Jenis konsumsi wajib dipilih.";
         return;
       }
 
-      hasil.innerHTML = `<div class="loading">Sedang mengambil data dari Azure Functions...</div>`;
+      hasil.className = "result loading";
+      hasil.innerHTML = "Sedang menghitung estimasi biaya...";
 
       try {
         const response = await fetch(`${API_URL}?jumlah=${jumlah}&jenis=${jenis}`);
         const data = await response.json();
 
         if (!response.ok) {
-          hasil.innerHTML = `<div class="error">${data.error || "Terjadi kesalahan pada API."}</div>`;
+          hasil.className = "result error";
+          hasil.innerHTML = data.error || "Terjadi kesalahan pada API.";
           return;
         }
 
+        hasil.className = "result";
         hasil.innerHTML = `
-          <div class="result-box">
-            <div class="row">
-              <span>Jumlah Peserta</span>
-              <span class="value">${data.jumlah} orang</span>
-            </div>
+          <h3>Hasil Estimasi</h3>
 
-            <div class="row">
-              <span>Kategori Konsumsi</span>
-              <span class="value">${data.jenis}</span>
-            </div>
-
-            <div class="row">
-              <span>Harga per Peserta</span>
-              <span class="value">${formatRupiah(data.hargaPerPeserta)}</span>
-            </div>
-
-            <div class="total">
-              <h3>Total Estimasi Biaya</h3>
-              <strong>${formatRupiah(data.total)}</strong>
-            </div>
-
-            <p style="font-size: 13px; color: #777; margin-top: 14px;">
-              Timestamp: ${data.timestamp}
-            </p>
+          <div class="result-row">
+            <span>Jumlah Peserta</span>
+            <strong>${data.jumlah} orang</strong>
           </div>
+
+          <div class="result-row">
+            <span>Jenis Konsumsi</span>
+            <strong>${data.jenis}</strong>
+          </div>
+
+          <div class="result-row">
+            <span>Harga per Peserta</span>
+            <strong>${formatRupiah(data.hargaPerPeserta)}</strong>
+          </div>
+
+          <div class="total-box">
+            <span>Total Estimasi Biaya</span>
+            <h2>${formatRupiah(data.total)}</h2>
+          </div>
+
+          <p style="font-size: 12px; color: #777; margin-top: 12px;">
+            Timestamp: ${data.timestamp}
+          </p>
         `;
       } catch (error) {
-        hasil.innerHTML = `<div class="error">Gagal menghubungi API. Periksa CORS atau URL Function.</div>`;
+        hasil.className = "result error";
+        hasil.innerHTML = "Gagal menghubungi API. Periksa CORS atau URL Function.";
       }
     }
 
     function resetForm() {
       document.getElementById("jumlah").value = "";
       document.getElementById("jenis").value = "";
-      document.getElementById("hasil").innerHTML = `
+      const hasil = document.getElementById("hasil");
+
+      hasil.className = "result";
+      hasil.innerHTML = `
         <div class="empty">
-          Masukkan data kegiatan untuk melihat hasil estimasi biaya.
+          Hasil estimasi akan muncul setelah jumlah peserta dan jenis konsumsi diisi.
         </div>
       `;
     }
